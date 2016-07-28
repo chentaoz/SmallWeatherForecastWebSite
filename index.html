@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Check Weather</title>
+    
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+
+    <head>
+  <title>Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="150">
+  <div id="today">
+    <nav id="nav" class="navbar navbar-static-top nav1" role="navigation">
+      <div class="container-fluid">
+        <!--Brand and toggle grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationBar">
+          <span class= "sr-only">Toggle navigation</span>
+          <span class= "icon-bar"></span>
+          <span class= "icon-bar"></span>
+          <span class= "icon-bar"></span>    
+        </button>
+        </div>
+        <div id="tempNavBar" class="navbar-collapse navbar-left text-align">
+          <ul class="nav navbar-nav">
+            <li><a id="fButton" href="#" class="hvr-underline-from-center">°F</a></li>
+            <li><a>/</a></li>
+            <li><a id="cButton" href="#" class="hvr-underline-from-center">°C</a></li>
+          </ul>
+        </div>
+
+        <!-- collect nav links, forms and other stuff for toggling -->
+        <div class="collapse navbar-collapse navbar-right text-align" id="navigationBar">
+          <ul class="nav navbar-nav">
+            <li id="todayNav"><a href="#today" class="hvr-underline-from-center smoothScrollUp active">Today<span class="sr-only">(current)</span></a></li>
+            <li><a id="test1" href="#hourly" class="hvr-underline-from-center smoothScrollUp">Hourly</a></li>
+            <li><a href="#oneWeek" class="hvr-underline-from-center smoothScrollUp">One Week</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid-->
+    </nav>
+
+    <video autoplay loop muted poster="#37474F" id="bgVideo">
+      <source id="webm" src="#37474F" type="video/webm">
+      <source id="mp4" src="#37474F" type="video/mp4">
+    </video>
+    <div class="container">
+      <h1 id="weatherTitle">Weather</h1>
+      <div class="row text-align">
+        <form id="form">
+          <h2 id="in">&nbsp in &nbsp</h2>
+          <input id="search" type="text" name="search" class="hvr-wobble-top" placeholder="test">
+          <input id="searchButton" type="image" value="" src="http://www.martinkkwan.com/images/search-icon.png" alt="submit">
+
+        </form>
+        <h5 id="date"><h/h4>
+        </div>
+      <div class ="row">
+        <div class="col-sm-4 col-sm-push-4">
+          <div id="descriptionDiv">
+            <p id="description">
+          </div>
+        </div>
+        <div class="col-sm-4 col-sm-pull-4">
+          <div id="tempDiv">
+            <p id="temp"></p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div id="windDiv">
+            <div id="wind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+  <div id = "hourly">
+    <div class = "container">
+      <h1 class ="hourlyTitle">Hourly Forecast</h1>
+      <div class = "row rowScroll">
+          
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly0">
+            <div class = "hourTime" id= "hourTime0"></div>
+            <div class = "hourIcon" id= "hourIcon0"></div>
+            <div class = "hourRainPercent" id = hourRainPercent0></div>
+            <div class = "hourTemp" id= "hourTemp0"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly1">
+            <div class = "hourTime" id= "hourTime1"></div>
+            <div class = "hourIcon" id= "hourIcon1"></div>
+            <div class = "hourRainPercent" id = hourRainPercent1></div>
+            <div class = "hourTemp" id= "hourTemp1"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly2">
+            <div class = "hourTime" id= "hourTime2"></div>
+            <div class = "hourIcon" id= "hourIcon2"></div>
+            <div class = "hourRainPercent" id = hourRainPercent2></div>
+            <div class = "hourTemp" id= "hourTemp2"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly3">
+            <div class = "hourTime" id= "hourTime3"></div>
+            <div class = "hourIcon" id= "hourIcon3"></div>
+            <div class = "hourRainPercent" id = hourRainPercent3></div>
+            <div class = "hourTemp" id= "hourTemp3"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly4">
+            <div class = "hourTime" id= "hourTime4"></div>
+            <div class = "hourIcon" id= "hourIcon4"></div>
+            <div class = "hourRainPercent" id = hourRainPercent4></div>
+            <div class = "hourTemp" id= "hourTemp4"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly5">
+            <div class = "hourTime" id= "hourTime5"></div>
+            <div class = "hourIcon" id= "hourIcon5"></div>
+            <div class = "hourRainPercent" id = hourRainPercent5></div>
+            <div class = "hourTemp" id= "hourTemp5"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly6">
+            <div class = "hourTime" id= "hourTime6"></div>
+            <div class = "hourIcon" id= "hourIcon6"></div>
+            <div class = "hourRainPercent" id = hourRainPercent6></div>
+            <div class = "hourTemp" id= "hourTemp6"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly7">
+            <div class = "hourTime" id= "hourTime7"></div>
+            <div class = "hourIcon" id= "hourIcon7"></div>
+            <div class = "hourRainPercent" id = hourRainPercent7></div>
+            <div class = "hourTemp" id= "hourTemp7"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly8">
+            <div class = "hourTime" id= "hourTime8"></div>
+            <div class = "hourIcon" id= "hourIcon8"></div>
+            <div class = "hourRainPercent" id = hourRainPercent8></div>
+            <div class = "hourTemp" id= "hourTemp8"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly9">
+            <div class = "hourTime" id= "hourTime9"></div>
+            <div class = "hourIcon" id= "hourIcon9"></div>
+            <div class = "hourRainPercent" id = hourRainPercent9></div>
+            <div class = "hourTemp" id= "hourTemp9"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly10">
+            <div class = "hourTime" id= "hourTime10"></div>
+            <div class = "hourIcon" id= "hourIcon10"></div>
+            <div class = "hourRainPercent" id = hourRainPercent10></div>
+            <div class = "hourTemp" id= "hourTemp10"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly11">
+            <div class = "hourTime" id= "hourTime11"></div>
+            <div class = "hourIcon" id= "hourIcon11"></div>
+            <div class = "hourRainPercent" id = hourRainPercent11></div>
+            <div class = "hourTemp" id= "hourTemp11"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly12">
+            <div class = "hourTime" id= "hourTime12"></div>
+            <div class = "hourIcon" id= "hourIcon12"></div>
+            <div class = "hourRainPercent" id = hourRainPercent12></div>
+            <div class = "hourTemp" id= "hourTemp12"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly13">
+            <div class = "hourTime" id= "hourTime13"></div>
+            <div class = "hourIcon" id= "hourIcon13"></div>
+            <div class = "hourRainPercent" id = hourRainPercent13></div>
+            <div class = "hourTemp" id= "hourTemp13"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly14">
+            <div class = "hourTime" id= "hourTime14"></div>
+            <div class = "hourIcon" id= "hourIcon14"></div>
+            <div class = "hourRainPercent" id = hourRainPercent14></div>
+            <div class = "hourTemp" id= "hourTemp14"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly15">
+            <div class = "hourTime" id= "hourTime15"></div>
+            <div class = "hourIcon" id= "hourIcon15"></div>
+            <div class = "hourRainPercent" id = hourRainPercent15></div>
+            <div class = "hourTemp" id= "hourTemp15"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly16">
+            <div class = "hourTime" id= "hourTime16"></div>
+            <div class = "hourIcon" id= "hourIcon16"></div>
+            <div class = "hourRainPercent" id = hourRainPercent16></div>
+            <div class = "hourTemp" id= "hourTemp16"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly17">
+            <div class = "hourTime" id= "hourTime17"></div>
+            <div class = "hourIcon" id= "hourIcon17"></div>
+            <div class = "hourRainPercent" id = hourRainPercent17></div>
+            <div class = "hourTemp" id= "hourTemp17"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly18">
+            <div class = "hourTime" id= "hourTime18"></div>
+            <div class = "hourIcon" id= "hourIcon18"></div>
+            <div class = "hourRainPercent" id = hourRainPercent18></div>
+            <div class = "hourTemp" id= "hourTemp18"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly19">
+            <div class = "hourTime" id= "hourTime19"></div>
+            <div class = "hourIcon" id= "hourIcon19"></div>
+            <div class = "hourRainPercent" id = hourRainPercent19></div>
+            <div class = "hourTemp" id= "hourTemp19"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly20">
+            <div class = "hourTime" id= "hourTime20"></div>
+            <div class = "hourIcon" id= "hourIcon20"></div>
+            <div class = "hourRainPercent" id = hourRainPercent20></div>
+            <div class = "hourTemp" id= "hourTemp20"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly21">
+            <div class = "hourTime" id= "hourTime21"></div>
+            <div class = "hourIcon" id= "hourIcon21"></div>
+            <div class = "hourRainPercent" id = hourRainPercent21></div>
+            <div class = "hourTemp" id= "hourTemp21"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly22">
+            <div class = "hourTime" id= "hourTime22"></div>
+            <div class = "hourIcon" id= "hourIcon22"></div>
+            <div class = "hourRainPercent" id = hourRainPercent22></div>
+            <div class = "hourTemp" id= "hourTemp22"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly23">
+            <div class = "hourTime" id= "hourTime23"></div>
+            <div class = "hourIcon" id= "hourIcon23"></div>
+            <div class = "hourRainPercent" id = hourRainPercent23></div>
+            <div class = "hourTemp" id= "hourTemp23"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly24">
+            <div class = "hourTime" id= "hourTime24"></div>
+            <div class = "hourIcon" id= "hourIcon24"></div>
+            <div class = "hourRainPercent" id = hourRainPercent24></div>
+            <div class = "hourTemp" id= "hourTemp24"></div>
+          </div>
+          <div class="col-sm-1 col-xs-7 hourlyDiv hvr-bob" id="hourly25">
+            <div class = "hourTime" id= "hourTime25"></div>
+            <div class = "hourIcon" id= "hourIcon25"></div>
+            <div class = "hourRainPercent" id = hourRainPercent25></div>
+            <div class = "hourTemp" id= "hourTemp25"></div>
+          </div>
+       
+      </div>
+    </div>
+  </div>
+      
+  <div id = "oneWeek">
+    <div class = "container">
+      <h1 class = "weeklyTitle"> One Week Forecast</h1>
+      <div class="row seven-cols">
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day0"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon0"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp0"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day1"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon1"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp1"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day2"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon2"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp2"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day3"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon3"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp3"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+      
+        <div class = "dayOfWeek" id = "day4"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon4"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp4"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day5"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon5"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp5"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day6"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon6"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp6"></div>
+      </div>
+      <div class="col-xs-11 col-md-3 col-lg-1 weeklyDiv hvr-bob">
+        <div class = "dayOfWeek" id = "day7"></div>
+        <div class = "weeklyIcon" id = "weeklyIcon7"></div>
+        <div class = "weeklyTemp" id = "weeklyTemp7"></div>
+      </div>
+  </div>
+    </div>
+  </div>
+      <div>
+  <footer class ="container" id = "footer">
+    <p id ="createdBy">
+      Created by <a class = "footerLink" href = "http://www.martinkkwan.com" target ="_blank">Chentao Zhang</a>, <span class = "poweredBy">Powered by <a class ="footerLink" href = "http://forecast.io/" target ="_blank"> Forecast</a></span>
+    </p>
+    <a class = "footerLink" id = "linkedIn" href = "https://www.linkedin.com/in/chentaoz"target ="_blank"><i class="fa fa-linkedin"></i></a>
+      <a class ="hvr-icon-wobble-vertical footerLink" id = "scrollUp"></a>
+      <a class = "footerLink" id = "email" href = "mailto:chentaoz@udel.edu?Subject=WeatherApp!" target="_top"><i class="fa fa-envelope"></i></a>
+    <p id ="copyright">
+   Chentao Zhang © 2016
+    </p>
+      </div>
+  </footer>
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src='http://maps.googleapis.com/maps/api/js?sensor=false&&libraries=places'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
