@@ -91,7 +91,7 @@ function successCityWeather(data) {
   convertTemp(units, tempData, "temp");
   convertWind(units, windSpeed);
   convertTime(units, unixTime, UTCOffset, "date");
-  $("#description").html("<img id = firstImg src ='http://www.martinkkwan.com/images/" + weatherIcon + ".png' alt = 'weatherIcon'>");
+  $("#description").html("<img id = firstImg src ='images/" + weatherIcon + ".png' alt = 'weatherIcon'>");
   $("#weatherTitle").html(description);
   convertHourly(units, data);
   convertWeekly(units, data);
@@ -393,7 +393,7 @@ function convertHourly(units, data) {
       $("#" + hourRainPercent).html(" ");
     }
 
-    var imageURL = "<img src = 'http://www.martinkkwan.com/images/" + list[x].weatherIcon + ".png' alt = 'weatherIcon' height ='50' width = '50'>";
+    var imageURL = "<img src = 'images/" + list[x].weatherIcon + ".png' alt = 'weatherIcon' height ='50' width = '50'>";
     convertTime(units, list[x].time, data.offset, hourDivName);
     convertTemp(units, list[x].temperature, tempDivName);
     $("#" + hourIconDiv).html(imageURL);
@@ -444,7 +444,7 @@ function convertWeekly(units, data) {
   for (var x = 0; x < list.length; x++) {
     var dayOfWeek = "day" + x;
     var tempDivName = "weeklyTemp" + x;
-    var weatherIconURL = "<img class = 'weeklyIconImg' src = 'http://www.martinkkwan.com/images/" + list[x].weatherIcon + ".png' alt = 'weathericon' height= '80' width = '80'>";
+    var weatherIconURL = "<img class = 'weeklyIconImg' src = 'images/" + list[x].weatherIcon + ".png' alt = 'weathericon' height= '80' width = '80'>";
     convertDayOfWeek(list[x].time, data.offset, dayOfWeek);
     convertTemp(units, list[x].temperatureMax, tempDivName, list[x].temperatureMin);
     $("#weeklyIcon" + x).html(weatherIconURL)
@@ -453,10 +453,10 @@ function convertWeekly(units, data) {
 //change video background based off of weather icon
 function changeVideo(icon) {
   var player = $("#bgVideo");
-  $("#bgVideo").attr("poster", "http://www.martinkkwan.com/videos/" + icon + ".jpg");
-  $("#bgVideo").attr("background", "url('http://www.martinkkwan.com/videos/" + icon + ".jpg') no-repeat;");
-  $("#webm").attr("src", "http://www.martinkkwan.com/videos/" + icon + ".webm");
-  $("#mp4").attr("src", "http://www.martinkkwan.com/videos/" + icon + ".mp4");
+  $("#bgVideo").attr("poster", "videos/" + icon + ".jpg");
+  $("#bgVideo").attr("background", "url('videos/" + icon + ".jpg') no-repeat;");
+  $("#mp4").attr("src", "videos/" + icon + ".mp4");
+  //$("#webm").attr("src", "/videos/" + icon + ".webm");
   player.load();
 }
 
