@@ -1,4 +1,5 @@
 
+
 QUnit.test( "temperature F/C converting and displaying test ", function( assert ) {
   convertTemp("si",29,"qunite-test-div-1");
   var result=$("#qunite-test-div-1").html();
@@ -336,4 +337,12 @@ QUnit.test( "scrolling test Y<575", function( assert ) {
     done2();
   },1000);
 });
+
+// QUnit.test( "process data from forecast", function( assert ) {
+//   var done1 = assert.async();
+//   $.getJSON("data/data1.json", function(json) {
+//     console.log(json);
+//     done1();
+// });
+// }
 
