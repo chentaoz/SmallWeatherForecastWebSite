@@ -6,9 +6,9 @@ This is a small webapp for a weather dashboard implemented by javascript and the
 - Bootstrap 3.3.4
 - Jquery 2.1.3
 - Jqury 1.11.2
-#Home Page
+##Home Pag
 ./index.html
-#Testing
+##Testing
 I used Qunit to test the javascript program
 - ./tests/QUnitTest.html is the testing dashbord.
 - ./tests/tests.js includes main unit test functions.
