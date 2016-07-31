@@ -1,6 +1,7 @@
 var geocoder;
 var locationUnit;
 var timeZone = "";
+var apiKey = "97fd0a30e71fbb3ff0b386111be0560c";
 geocoder = new google.maps.Geocoder();
 
 if (navigator.geolocation) {
@@ -61,7 +62,7 @@ function searchCityInfo() {
       var searchLng = info[2];
       timeZone = info[3];
       console.log(timeZone);
-      var weatherApiUrl = "https://api.forecast.io/forecast/97fd0a30e71fbb3ff0b386111be0560c/" + searchLat + "," + searchLng + "?units=" + locationUnit + "&exclude=minutely" + "&callback=?";
+      var weatherApiUrl = "https://api.forecast.io/forecast/"+apiKey+"/" + searchLat + "," + searchLng + "?units=" + locationUnit + "&exclude=minutely" + "&callback=?";
       return $.getJSON(weatherApiUrl).then(function(data) {
         console.log(data);
         successCityWeather(data);
@@ -73,7 +74,7 @@ function searchCityInfo() {
 }
 
 function getCurrentLocationWeather(lat, lng) {
-  var weatherApiUrl = "https://api.forecast.io/forecast/97fd0a30e71fbb3ff0b386111be0560c/" + lat + "," + lng + "?units=auto" + "&exclude=minutely" + "&callback=?";
+  var weatherApiUrl = "https://api.forecast.io/forecast/"+apiKey+"/" + lat + "," + lng + "?units=auto" + "&exclude=minutely" + "&callback=?";
   $.getJSON(weatherApiUrl, successCityWeather);
 
 }

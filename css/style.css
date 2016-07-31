@@ -4,11 +4,6 @@ body {
   width: 100%;
   font-size: 100%;
 }
-/*for ie mobile */
-@-ms-viewport {
-  width: extend-to-zoom;
-  zoom: 1.0;
-}
 
 .icon-bar {
   background-color: white;
@@ -206,12 +201,6 @@ video#bgVideo {
   font-weight: 200;
 }
 
-:-moz-placeholder {
-  /* older Firefox*/
-  color: white;
-  font-weight: 200;
-  opacity: 1;
-}
 
 ::-moz-placeholder {
   /* Firefox 19+ */
@@ -253,13 +242,6 @@ video#bgVideo {
 }
 
 
-/*mobile size */
-
-@media screen and (max-width: 768px) {
-  #date {
-    font-size: 4vw;
-  }
-}
 
 #tempDiv {
   height: 13em;
@@ -343,9 +325,6 @@ video#bgVideo {
 }
 
 
-/* IE 6 doesn't support max-height
-   * we use height instead, but this forces the menu to always be this tall
-   */
 
 * html .ui-autocomplete {
   height: 15em;
@@ -445,49 +424,6 @@ video#bgVideo {
 }
 
 
-/*mobile size */
-
-@media screen and (max-width: 768px) {
-  .hourlyDiv {
-    width: 17.5vmin;
-  }
-  .weeklyDiv {
-    height: 50px;
-    margin: .2em;
-  }
-  #hourly .container {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  #tempDiv,
-  #descriptionDiv,
-  #windDiv {
-    height: 10em;
-    width: 10em;
-  }
-  #temp {
-    font-size: 3.5em;
-  }
-  #firstImg {
-    width: 2.5em;
-    height: auto;
-  }
-  #wind {
-    font-size: 2.5em;
-  }
-}
-
-
-/*tablet size*/
-
-@media screen and (min-width: 769px) {
-  .seven-cols > .col-md-3 {
-    width: 23%;
-    margin: 1% 1% 1%;
-  }
-}
-
-
 /*desktop size */
 
 @media screen and (min-width: 996px) {
@@ -517,50 +453,7 @@ video#bgVideo {
 }
 
 
-/*mobile*/
 
-@media screen and (max-width: 768px) {
-  .hourTemp,
-  .hourTime,
-  .hourRainPercent {
-    font-size: .9em;
-  }
-  .weeklyDiv {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .seven-cols {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .dayOfWeek {
-    font-size: 15px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 2%;
-    transform: translate(0%, -50%);
-  }
-  .weeklyIcon {
-    display: inline-block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .weeklyTemp {
-    display: inline-block;
-    position: absolute;
-    right: 2%;
-    top: 50%;
-    transform: translate(0%, -50%);
-  }
-  .weeklyIconImg {
-    width: 2.75em;
-    height: auto;
-  }
-}
 
 
 /* Icon Up */
@@ -838,23 +731,7 @@ video#bgVideo {
 }
 
 
-/* Underline From Center */
 
-
-/* commented out because of glitch in mobile navbar dropdown display
-.hvr-underline-from-center {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow: hidden;
-}
-*/
 
 .hvr-underline-from-center:before {
   content: "";
