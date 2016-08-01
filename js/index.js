@@ -399,6 +399,8 @@ function convertHourly(units, data) {
     convertTemp(units, list[x].temperature, tempDivName);
     $("#" + hourIconDiv).html(imageURL);
   }
+
+  return list;
 }
 
 function convertDayOfWeek(unixTime, UTCOffset, divName) {
@@ -450,6 +452,8 @@ function convertWeekly(units, data) {
     convertTemp(units, list[x].temperatureMax, tempDivName, list[x].temperatureMin);
     $("#weeklyIcon" + x).html(weatherIconURL)
   }
+
+  return list;
 }
 //change video background based off of weather icon
 function changeVideo(icon) {

@@ -136,11 +136,31 @@ QUnit.test( "weekday converting and displaying test ", function( assert ) {
 });
 
 
-// QUnit.test( "latitude and longitude converting to city test", function( assert ) {
-//   convertLatLng(51.508742,-0.120850);
-//   var result=document.getElementById("search").placeholder;
-//   assert.equal(result,"London, United Kingdom","51.508742,-0.120850 Longdon UK Passed");
-// });
+QUnit.test( "convertHourly list results test", function( assert ) {
+
+  var list=convertHourly("us",sample_data1);
+  assert.deepEqual(list,sample_res1,"Testoni Farm, Illiois at 1470026249 passed");
+  list=convertHourly("us",sample_data2);
+  assert.deepEqual(list,sample_res2,"Moscow, Russia at 1470031200 passed");
+  list=convertHourly("is",sample_data3);
+  assert.deepEqual(list,sample_res3,"Egyak, Hungary at 1470029529 passed");
+
+
+});
+
+QUnit.test( "convertWeekly list results test", function( assert ) {
+
+  var list=convertWeekly("us",sample_data1);
+  assert.deepEqual(list,sample_res01,"Testoni Farm, Illiois at 1470026249 passed");
+  list=convertWeekly("us",sample_data2);
+  assert.deepEqual(list,sample_res02,"Moscow, Russia at 1470031200 passed");
+  list=convertWeekly("is",sample_data3);
+  assert.deepEqual(list,sample_res03,"Egyak, Hungary at 1470029529 passed");
+
+
+});
+
+
 QUnit.test( "search city outside US test1", function( assert ) {
   var done1 = assert.async();
   $("#search").val("Guangzhou");
@@ -199,6 +219,23 @@ QUnit.test( "search city inside US test2 ", function( assert ) {
   
   asyctest.always(function(data){
     assert.equal(timeZone,"CDT","Milwaukee, Wisconsin TimeZone Passed");
+    timeZone=tmpTimeZone;
+    done1();
+  });
+    
+});
+
+
+QUnit.test( "search city inside US test2 ", function( assert ) {
+  var done1 = assert.async();
+  $("#search").val("Mountain View, California");
+  var tmpTimeZone=timeZone;
+  timeZone="";
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  
+  asyctest.always(function(data){
+    assert.equal(timeZone,"PDT","Mountain View, California TimeZone Passed");
     timeZone=tmpTimeZone;
     done1();
   });
@@ -264,6 +301,8 @@ QUnit.test( "search city with invalid input test ", function( assert ) {
   });
 });
 
+
+
 QUnit.test( "F button switch test ", function( assert ) {
   var locationUnitTmp = locationUnit; //reserve default locationUnit; 
   locationUnit="si";
@@ -292,11 +331,12 @@ QUnit.test( "C button switch test ", function( assert ) {
   locationUnit=locationUnitTmp;
 });
 
+
+
 QUnit.test( "scrolling test Y=575", function( assert ) {
    
   var done1 = assert.async();
-  
-   $(window).scrollTop(575);
+  $(window).scrollTop(575);
   setTimeout(function() {
     
     var r0=$("body").find("#nav.navbar-default");
@@ -312,7 +352,7 @@ QUnit.test( "scrolling test Y=575", function( assert ) {
 
 QUnit.test( "scrolling test Y>575", function( assert ) {
   var done2 = assert.async();
-   $(window).scrollTop(700);
+  $(window).scrollTop(700);
   setTimeout(function() {
     var r0=$("body").find("#nav.navbar-default");
     var r1=$("body").find("#nav.navbar-fixed-top");
@@ -326,7 +366,7 @@ QUnit.test( "scrolling test Y>575", function( assert ) {
 
 QUnit.test( "scrolling test Y<575", function( assert ) {
   var done2 = assert.async();
-   $(window).scrollTop(0);
+  $(window).scrollTop(0);
   setTimeout(function() {
     var r0=$("body").find("#nav.navbar-default");
     var r1=$("body").find("#nav.navbar-fixed-top");
@@ -338,11 +378,5 @@ QUnit.test( "scrolling test Y<575", function( assert ) {
   },1000);
 });
 
-// QUnit.test( "process data from forecast", function( assert ) {
-//   var done1 = assert.async();
-//   $.getJSON("data/data1.json", function(json) {
-//     console.log(json);
-//     done1();
-// });
-// }
+
 
