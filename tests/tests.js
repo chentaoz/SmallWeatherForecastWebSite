@@ -21,13 +21,9 @@ QUnit.test( "temperature F/C converting and displaying test ", function( assert 
   result=$("#qunite-test-div-1").html();
   assert.ok(  result === "90°F", "90°F Passed!" );
 
-  convertTemp("us",0,"qunite-test-div-1");
+  convertTemp("us",89.61231,"qunite-test-div-1",86.9213);
   result=$("#qunite-test-div-1").html();
-  assert.ok(  result === "0°F", "0°F  Passed!" );
-
-  convertTemp("us",-1.11231,"qunite-test-div-1");
-  result=$("#qunite-test-div-1").html();
-  assert.ok(  result === "-1°F", "-1 °F Passed!" );
+  assert.equal(  result , "<b>90°</b>/ 87°F", "90°F Passed!" );
 
   convertTemp("us","21°C","qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
@@ -244,6 +240,7 @@ QUnit.test( "search city inside US test2 ", function( assert ) {
 
 QUnit.test( "search city with invalid input test ", function( assert ) {
 
+  
   var tmpTimeZone=timeZone;
   timeZone="";
   var done1 = assert.async();
