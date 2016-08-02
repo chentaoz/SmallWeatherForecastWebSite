@@ -1,27 +1,25 @@
 
 
 QUnit.test( "temperature F/C converting and displaying test ", function( assert ) {
-  convertTemp("si",29,"qunite-test-div-1");
-  var result=$("#qunite-test-div-1").html();
-  assert.ok(  result === "29°C", "29°C Passed!" );
+  
 
-  convertTemp("si",37.1231,"qunite-test-div-1");
+  convertTemp("si",37.12,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
   assert.ok(  result === "37°C", "37°C Passed!" );
 
-  convertTemp("is",0,"qunite-test-div-1");
+  convertTemp("si",0.00,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
   assert.ok(  result === "0°C", "0°C  Passed!" );
 
-  convertTemp("is",-12.00,"qunite-test-div-1");
+  convertTemp("si",-12.00,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
   assert.ok(  result === "-12°C", "-12 °C Passed!" );
 
-  convertTemp("us",89.61231,"qunite-test-div-1");
+  convertTemp("us",89.61,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
   assert.ok(  result === "90°F", "90°F Passed!" );
 
-  convertTemp("us",89.61231,"qunite-test-div-1",86.9213);
+  convertTemp("us",89.61,"qunite-test-div-1",86.92);
   result=$("#qunite-test-div-1").html();
   assert.equal(  result , "<b>90°</b>/ 87°F", "90°F Passed!" );
 
@@ -32,36 +30,36 @@ QUnit.test( "temperature F/C converting and displaying test ", function( assert 
 });
 
 QUnit.test( "wind speed converting and displaying test", function( assert ) {
-  convertWind("us",10);
+  convertWind("us",10.00);
   var result=$("#wind").html();
-  assert.ok( result === "10 mph ", "10 Miles Passed!" );
+  assert.ok( result === "10 mph ", "10 mph Passed!" );
   
   convertWind("us",0.57);
   result=$("#wind").html();
-  assert.ok( result === "1 mph ", "1 Miles Passed!" );
+  assert.ok( result === "1 mph ", "1 mph Passed!" );
   
-  convertWind("us",0);
+  convertWind("us",0.00);
   result=$("#wind").html();
-  assert.ok( result === "0 mph ", "0 Miles Passed!" );
+  assert.ok( result === "0 mph ", "0 mph Passed!" );
   
-  convertWind("is",1);
+  convertWind("is",10.00);
   result=$("#wind").html();
-  assert.ok( result === "4 kmph", "4 kmph Passed!" );
+  assert.equal( result , "36 kmph", "36 kmph Passed!" );
   
-  convertWind("is",99);
+  convertWind("is",99.32);
   result=$("#wind").html();
-  assert.ok( result === "356 kmph", "356 kmph Passed!" );
+  assert.equal( result , "358 kmph", "358 kmph Passed!" );
 
-  convertWind("is",50.231);
+  convertWind("is",0.00);
   result=$("#wind").html();
-  assert.ok( result === "181 kmph", "181 kmph Passed!" );
+  assert.equal( result , "0 kmph", "0 kmph Passed!" );
 });
 
 QUnit.test( "24 hour clock / 12 hour clock based time converting and displaying test", function( assert ) {
   // test clocks displaying on 'non-date' div
-  convertTime("is",1465689600,7,"qunite-test-div-1");
+  convertTime("is",1465689600,0,"qunite-test-div-1");
   var result=$("#qunite-test-div-1").html();
-  assert.equal( result ,"7:00", "Sun, 12 Jun 2016 00:00:00 GMT (UTCOffset:7) - 24 Hour Clock Passed!" );
+  assert.equal( result ,"0:00", "Sun, 12 Jun 2016 00:00:00 GMT (UTCOffset:7) - 24 Hour Clock Passed!" );
 
   convertTime("us",1465689600,0,"qunite-test-div-1");
   var result=$("#qunite-test-div-1").html();
@@ -94,6 +92,14 @@ QUnit.test( "24 hour clock / 12 hour clock based time converting and displaying 
   convertTime("us",1563122212,0,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
   assert.equal( result ,"4:36PM", "Sun, 14 Jul 2019 16:36:52 GMT (UTCOffset:0) - 12 Hour Clock Passed!" );
+
+  convertTime("is",1512129600,0,"qunite-test-div-1");
+  result=$("#qunite-test-div-1").html();
+  assert.equal( result ,"12:00", "Sun, 14 Jul 2017 12:00:00 GMT (UTCOffset:0) - 24 Hour Clock Passed!" );
+
+  convertTime("us",1512129600,0,"qunite-test-div-1");
+  result=$("#qunite-test-div-1").html();
+  assert.equal( result ,"12PM", "Sun, 14 Jul 2019 12:00:00 GMT (UTCOffset:0) - 12 Hour Clock Passed!" );
 
  
 
@@ -129,6 +135,10 @@ QUnit.test( "weekday converting and displaying test ", function( assert ) {
   convertDayOfWeek(1451606400,0,"qunite-test-div-1");
   var result=$("#qunite-test-div-1").html();
   assert.equal(result,"Friday", "Fri, 01 Jan 2016 00:00:00 GMT Passed");
+
+  convertDayOfWeek(1456704000,0,"qunite-test-div-1");
+  var result=$("#qunite-test-div-1").html();
+  assert.equal(result,"Monday", "Mon, 29 Feb 2016 00:00:00 GMT Passed");
 });
 
 
@@ -224,7 +234,7 @@ QUnit.test( "search city inside US test2 ", function( assert ) {
 
 QUnit.test( "search city inside US test2 ", function( assert ) {
   var done1 = assert.async();
-  $("#search").val("Mountain View, California");
+  $("#search").val("  Mountain View, California  ");
   var tmpTimeZone=timeZone;
   timeZone="";
   var asyctest=  searchCityInfo();
@@ -240,7 +250,7 @@ QUnit.test( "search city inside US test2 ", function( assert ) {
 
 QUnit.test( "search city with invalid input test ", function( assert ) {
 
-  
+
   var tmpTimeZone=timeZone;
   timeZone="";
   var done1 = assert.async();
