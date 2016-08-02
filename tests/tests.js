@@ -4,7 +4,7 @@ QUnit.test( "temperature F/C converting and displaying test ", function( assert 
   
 
   convertTemp("si",37.12,"qunite-test-div-1");
-  result=$("#qunite-test-div-1").html();
+  var result=$("#qunite-test-div-1").html();
   assert.ok(  result === "37°C", "37°C Passed!" );
 
   convertTemp("si",0.00,"qunite-test-div-1");
@@ -99,7 +99,7 @@ QUnit.test( "24 hour clock / 12 hour clock based time converting and displaying 
 
   convertTime("us",1512129600,0,"qunite-test-div-1");
   result=$("#qunite-test-div-1").html();
-  assert.equal( result ,"12PM", "Sun, 14 Jul 2019 12:00:00 GMT (UTCOffset:0) - 12 Hour Clock Passed!" );
+  assert.equal( result ,"12PM", "Sun, 14 Jul 2017 12:00:00 GMT (UTCOffset:0) - 12 Hour Clock Passed!" );
 
  
 
@@ -107,14 +107,14 @@ QUnit.test( "24 hour clock / 12 hour clock based time converting and displaying 
   timeZone="EST";
   convertTime("us",1465689600,8,"date");
   result=$("#date").html();
-  assert.equal( result ,"As of 8:00 am EST", "Sun, 12 Jun 2016 00:00:00 GMT - 12 Hour Clock displying on 'data' div Passed!" );
+  assert.equal( result ,"at 8:00 am EST", "Sun, 12 Jun 2016 00:00:00 GMT - 12 Hour Clock displying on 'data' div Passed!" );
   timeZone="";
 
 
   timeZone="GMT";
   convertTime("is",1563122212,0,"date");
   result=$("#date").html();
-  assert.equal( result ,"As of 16:36 GMT", "Sun, 14 Jul 2019 16:36:52 GMT - 24 Hour Clock displying on 'data' div Passed!" );
+  assert.equal( result ,"at 16:36 GMT", "Sun, 14 Jul 2019 16:36:52 GMT - 24 Hour Clock displying on 'data' div Passed!" );
   timeZone="";
 
 //test using formated time string as input
@@ -139,6 +139,10 @@ QUnit.test( "weekday converting and displaying test ", function( assert ) {
   convertDayOfWeek(1456704000,0,"qunite-test-div-1");
   var result=$("#qunite-test-div-1").html();
   assert.equal(result,"Monday", "Mon, 29 Feb 2016 00:00:00 GMT Passed");
+
+  convertDayOfWeek(1472817600,12,"qunite-test-div-1");
+  var result=$("#qunite-test-div-1").html();
+  assert.equal(result,"Saturday", "Fri, 02 Sep 2016 12:00:00 GMT Passed");
 });
 
 
@@ -167,6 +171,61 @@ QUnit.test( "convertWeekly list results test", function( assert ) {
 });
 
 
+
+
+QUnit.test( "search city with invalid input test ", function( assert ) {
+
+
+  var tmpTimeZone=timeZone;
+  var done1 = assert.async();
+  $("#search").val("");
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  asyctest.always(function(data){
+  	assert.equal(timeZone,tmpTimeZone,"'' Invalid Input Didn't Neither Throw Exception Nor Change Global Values ");
+  	done1();
+  });
+
+
+  var done2 = assert.async();
+  $("#search").val("hhhzz");
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  asyctest.always(function(data){
+  	assert.equal(timeZone,tmpTimeZone,"'hhhzz' Invalid Input Didn't  Neither Throw Exception Nor Change Global Values ");
+  	done2();
+  });
+  
+
+  var done3 = assert.async();
+  $("#search").val("*-1");
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  asyctest.always(function(data){
+  	assert.equal(timeZone,tmpTimeZone,"'*-1' Invalid Input Didn't  Neither Throw Exception Nor Change Global Values ");
+  	done3();
+  });
+
+  var done4 = assert.async();
+  $("#search").val("Invalid City, United States");
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  asyctest.always(function(data){
+  	assert.equal(timeZone,tmpTimeZone,"'Invalid City' Which is Not Existing City didn't  Neither Throw Exception Nor Change Global Values ");
+    done4();
+  });
+
+  
+  var done5 = assert.async();
+  $("#search").val("   ");
+  var asyctest=  searchCityInfo();
+  console.log(asyctest);
+  asyctest.always(function(data){
+    assert.equal(timeZone,tmpTimeZone,"'   ' Invalid Input didn't  Neither Throw Exception Nor Change Global Values ");
+    done5();
+  });
+});
+
 QUnit.test( "search city outside US test1", function( assert ) {
   var done1 = assert.async();
   $("#search").val("Guangzhou");
@@ -176,9 +235,9 @@ QUnit.test( "search city outside US test1", function( assert ) {
   console.log(asyctest);
   
   asyctest.always(function(data){
-  	assert.equal(timeZone,"CST","Guangzhou ,China TimeZone Passed");
+    assert.equal(timeZone,"CST","Guangzhou ,China TimeZone Passed");
     timeZone=tmpTimeZone;
-  	done1();
+    done1();
   });
     
 });
@@ -208,9 +267,9 @@ QUnit.test( "search city inside US test1 ", function( assert ) {
   console.log(asyctest);
   
   asyctest.always(function(data){
-  	assert.equal(timeZone,"EDT","Newark, Delaware TimeZone Passed");
+    assert.equal(timeZone,"EDT","Newark, Delaware TimeZone Passed");
     timeZone=tmpTimeZone;
-  	done1();
+    done1();
   });
     
 });
@@ -247,67 +306,6 @@ QUnit.test( "search city inside US test2 ", function( assert ) {
   });
     
 });
-
-QUnit.test( "search city with invalid input test ", function( assert ) {
-
-
-  var tmpTimeZone=timeZone;
-  timeZone="";
-  var done1 = assert.async();
-  $("#search").val("");
-  var asyctest=  searchCityInfo();
-  console.log(asyctest);
-  asyctest.always(function(data){
-  	assert.equal(timeZone,"","'' Invalid Input Didn't Neither Throw Exception Nor Change Global Values ");
-  	timeZone=tmpTimeZone;
-  	done1();
-  });
-
-  timeZone="";
-  var done2 = assert.async();
-  $("#search").val("hhhzz");
-  var asyctest=  searchCityInfo();
-  console.log(asyctest);
-  asyctest.always(function(data){
-  	assert.equal(timeZone,"","'hhhzz' Invalid Input Didn't  Neither Throw Exception Nor Change Global Values ");
-  	timeZone=tmpTimeZone;
-  	done2();
-  });
-  
-  timeZone="";
-  var done3 = assert.async();
-  $("#search").val("*-1");
-  var asyctest=  searchCityInfo();
-  console.log(asyctest);
-  asyctest.always(function(data){
-  	assert.equal(timeZone,"","'*-1' Invalid Input Didn't  Neither Throw Exception Nor Change Global Values ");
-  	 timeZone=tmpTimeZone;
-  	done3();
-  });
-
-  timeZone="";
-  var done4 = assert.async();
-  $("#search").val("Invalid City, United States");
-  var asyctest=  searchCityInfo();
-  console.log(asyctest);
-  asyctest.always(function(data){
-  	assert.equal(timeZone,"","'Invalid City' Which is Not Existing City didn't  Neither Throw Exception Nor Change Global Values ");
-  	timeZone=tmpTimeZone;
-  	done4();
-  });
-
-  timeZone="";
-  var done5 = assert.async();
-  $("#search").val("   ");
-  var asyctest=  searchCityInfo();
-  console.log(asyctest);
-  asyctest.always(function(data){
-    assert.equal(timeZone,"","'   ' Invalid Input didn't  Neither Throw Exception Nor Change Global Values ");
-    timeZone=tmpTimeZone;
-    done5();
-  });
-});
-
 
 
 QUnit.test( "F button switch test ", function( assert ) {

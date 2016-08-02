@@ -4,6 +4,7 @@ var timeZone = "";
 var apiKey = "97fd0a30e71fbb3ff0b386111be0560c";
 geocoder = new google.maps.Geocoder();
 
+
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
 }
@@ -17,6 +18,8 @@ function successFunction(position) {
 function errorFunction() {
   alert("Geocoder has failed");
   $("#fButton").click();
+  $("#search").val("Washington, District of Columbia");
+  $("#searchButton").click();
 }
 
 $(function() {
@@ -44,7 +47,7 @@ $("#searchButton").click(function() {
 //runs when city is either selected from autocomplete, or search button is clicked
 function searchCityInfo() {
   
-    var searchCity = $("#search").val();
+    var searchCity = $("#search").val().trim();
     $("#search").blur();
     var jsonURL = "http://autocomplete.wunderground.com/aq?query=" + searchCity + "&cb=?";
     var ajax1 = $.getJSON(jsonURL);
@@ -195,7 +198,7 @@ $(function() {
 });
 
 function monkeyPatchAutocomplete() {
-  // don't really need this, but in case I did, I could store it and chain
+  // don't really need this, but in case I did
   var oldFn = $.ui.autocomplete.prototype._renderItem;
 
   $.ui.autocomplete.prototype._renderItem = function(ul, item) {
@@ -307,8 +310,8 @@ function convertTime(units, unixTime, UTCOffset, divName) {
 
   //if this function was called with parameters "date" for the first page
   if (divName === "date") {
-    if(hourFormat!=="")var formattedTime = "As of " + hours + ":" + minutes.substr(-2) + " " + hourFormat + " " + timeZone;
-    else var formattedTime = "As of " + hours + ":" + minutes.substr(-2) +" " + timeZone;
+    if(hourFormat!=="")var formattedTime = "at " + hours + ":" + minutes.substr(-2) + " " + hourFormat + " " + timeZone;
+    else var formattedTime = "at " + hours + ":" + minutes.substr(-2) +" " + timeZone;
 
   } //if hourly div, minutes = 0 and F is selected, add a PM or AM
   else if (units === "us" && (minutes === "0" || minutes === "00")) {
